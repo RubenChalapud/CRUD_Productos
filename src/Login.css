@@ -11,8 +11,8 @@
     align-items: center;
 }
 
-.o-container-singin {
-    display: flex;
-    flex-direction: row;
+.o-container-singup {
+    margin-left: 8rem;
+    margin-top: 19%;
 }
 
