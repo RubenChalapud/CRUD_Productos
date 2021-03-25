@@ -69,6 +69,37 @@ const useStyles = makeStyles((theme) => ({
       });
   };
 
+  //Google Login
+  const loginGoogle = (e) => {
+    e.preventDefault();
+
+    let provider =  new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider)
+    .then(response => {
+      props.history.push('/products');
+  })
+  .catch(error => {
+      console.log(error);
+      alert(error.menssage);
+  });
+};
+
+
+//Facebook Login
+const loginFacebook = (e) => {
+  e.preventDefault();
+
+  let provider =  new firebase.auth.FacebookAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+  .then(response => {
+    props.history.push('/products');
+})
+.catch(error => {
+    console.log(error);
+    alert(error.menssage);
+});
+};
+
 
   
     return (
@@ -117,9 +148,29 @@ const useStyles = makeStyles((theme) => ({
             >
               Ingresar
             </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={loginGoogle}
+            >
+              Ingresar con Google 
+            </Button>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={loginFacebook}
+            >
+              Ingresar con Facebook
+            </Button>
             <Grid container>
               <Grid item>
-                <Link to="/singup" component={MyLink} variant="body2">
+                <Link to="/signup" component={MyLink} variant="body2">
                     {"¿Eres miebro? Registrarse"}
                 </Link>
               </Grid>
