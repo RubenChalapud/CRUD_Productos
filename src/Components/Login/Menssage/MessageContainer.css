@@ -1,0 +1,42 @@
+.o-container-log-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 757px;
+    height: 1024px;
+    background: linear-gradient(328.83deg, #777EBE -0.4%, rgba(33, 55, 255, 0.81) 100%);
+}
+
+.o-container-log-welcome {
+    color: white;
+    font-family: 'Roboto';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 17%;
+    margin-right: 17%;
+}
+
+.o-message-welcome {
+    font-weight: 300;
+    font-size: 40px;
+    margin: 0;
+}
+
+.o-title {
+    font-weight: 700;
+    font-size: 96px;
+    margin: 0.5rem;
+}
+
+.o-welcome-separator {
+    background: white;
+    width: 83px;
+    height: 11px;
+}
+
+.o-message {
+    font-size: 20px;
+    font-weight: 400;
+}

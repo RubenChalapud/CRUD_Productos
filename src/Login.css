@@ -1,0 +1,18 @@
+.o-container-login {
+    display: flex;
+    flex-direction: row;
+}
+
+.o-container-log-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.o-container-singin {
+    display: flex;
+    flex-direction: row;
+}
+
