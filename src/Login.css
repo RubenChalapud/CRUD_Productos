@@ -16,3 +16,11 @@
     margin-top: 19%;
 }
 
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.makeStyles-submit-4.MuiButton-containedPrimary.MuiButton-fullWidth {
+    margin-bottom: -1rem;
+}
+
+.MuiGrid-root.MuiGrid-container {
+    margin-top: 3rem;
+}
+

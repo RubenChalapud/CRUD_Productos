@@ -34,8 +34,7 @@ export default function SignUp() {
   return (
     <div className="o-container-login">
         <MenssageContainer></MenssageContainer>
-        <div className="o-container-singup">
-                <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" className="o-container-singup">
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5">
@@ -108,9 +107,7 @@ export default function SignUp() {
                     </Grid>
                     </form>
                 </div>
-            </Container>
-        </div>
-        
+            </Container>    
     </div>
     
   );
