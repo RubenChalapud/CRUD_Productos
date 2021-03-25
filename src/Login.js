@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
+import firebase from 'firebase/app';
+import 'firebase/database';
+import 'firebase/auth'
 
 import "./Login.css"
 import MenssageContainer from "./Components/Login/Menssage/MenssageContainer";
@@ -36,8 +40,36 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-  export default function Login() {
+  const Login = (props) => {
     const classes = useStyles();
+
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    });
+
+  //Funcion para actualizar State de usuarios
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value 
+    });
+  };
+
+  const handleLogin = (e) => {
+      e.preventDefault();
+
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then(response => {
+          props.history.push('/products');
+      })
+      .catch(error => {
+          console.log(error);
+          alert(error.menssage);
+      });
+  };
+
+
   
     return (
     <div className="o-container-login">
@@ -49,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
           <Typography component="h1" variant="h5">
             Iniciar sesión
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleLogin}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -57,20 +89,24 @@ const useStyles = makeStyles((theme) => ({
               fullWidth
               id="email"
               label="Correo Electronico"
-              name="Email"
+              name="email"
               autoComplete="email"
               autoFocus
+              defaultValue={user.email}
+              onChange={handleChange}
             />
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              name="Contraseña"
+              name="password"
               label="Contraseña"
               type="password"
               id="password"
               autoComplete="current-password"
+              defaultValue={user.password}
+              onChange={handleChange}
             />
             <Button
               type="submit"
@@ -80,24 +116,6 @@ const useStyles = makeStyles((theme) => ({
               className={classes.submit}
             >
               Ingresar
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Ingresar con Google
-            </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Ingresar con Facebook
             </Button>
             <Grid container>
               <Grid item>
@@ -112,4 +130,6 @@ const useStyles = makeStyles((theme) => ({
        
     </div>  
     );
-  }
+  }; 
+
+  export default withRouter(Login);
