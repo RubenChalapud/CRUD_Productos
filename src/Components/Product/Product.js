@@ -40,15 +40,14 @@ function Product() {
     }, []);
 
     return (
-        <div>
+        <div className="row">
             <ProductForm {...{Task, currentId, products}}></ProductForm>
-            <h1>Product</h1>
-            <div className="col-md-16 p-2">
+            <div className="col-md-8 p-2">
                 {products.map(product => (
-                   <div className="card mb-1" key={product.id}>
+                   <div className="card card-columns mb-1" key={product.id}>
                        <div className="card-body">
                            <div className="d-flex justify-content-between">
-                            <h4>{product.name}</h4>
+                            <h2 className="card-title">{product.name}</h2>
                             <div>
                             <i className="material-icons" 
                             onClick={() => setCurrentId(product.id)}>mode_edit</i>
@@ -56,9 +55,11 @@ function Product() {
                             onClick={() => DeleteProduct(product.id)}>delete</i>
                             </div>
                            </div>
-                           <p>{product.description}</p>
-                           <p>{product.stock}</p>
-                           <p>{product.price}</p>
+                           <p className="card-text">{product.description}</p>
+                           <div className="d-flex justify-content-between">
+                            <h4>Stock: {product.stock}</h4>
+                            <h4>${product.price}</h4>
+                           </div>
                        </div>
                    </div> 
                 ))}

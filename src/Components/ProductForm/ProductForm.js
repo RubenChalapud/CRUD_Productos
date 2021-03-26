@@ -30,7 +30,7 @@ function ProductForm(props) {
     }
 
     useEffect(() => {
-        if(props.currentId == ''){
+        if(props.currentId === ''){
             setValues({...initialStateValues});
         } else {
             getProductById(props.currentId);
@@ -38,7 +38,7 @@ function ProductForm(props) {
     }, [props.currentId]);
 
     return (
-        <form className="card card-body" onSubmit={handleSubmit}>
+        <form className="card-body" onSubmit={handleSubmit}>
             <div className="form-group input-group">
                 <input type="text" className="form-control" 
                 placeholder="Nombre de producto" name="name"
