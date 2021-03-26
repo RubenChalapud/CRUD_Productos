@@ -4,6 +4,7 @@ import { db } from '../../App';
 
 function ProductForm(props) {
 
+    //Valores iniciales de Form
     const initialStateValues = {
         name:'',
         description:'',
@@ -11,19 +12,23 @@ function ProductForm(props) {
         price:''
     };
 
+    //Estado de los valores 
     const [values, setValues] = useState(initialStateValues);
 
+    //Cambio en el estado de los valores
     const handleChange = (e) =>{
         const {name, value} = e.target;
         setValues({...values, [name]: value})
     }
 
+    //Envio de formulario y definicion de tarea
     const handleSubmit = (e) =>{
         e.preventDefault();
         props.Task(values);
         setValues({...initialStateValues})
     }
 
+    //Obtención de valores de los productos por id
     const getProductById = async (id) =>{
         const doc = await db.collection('Products').doc(id).get();
         setValues({...doc.data()})

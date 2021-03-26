@@ -9,6 +9,7 @@ function Product() {
 
     const [currentId, setCurrentId] = useState('');
 
+    //Defición de tareas, guardar datos y actualizar datos
     const Task = async (productObject) =>{
         if (currentId === ''){
             await db.collection('Products').doc().set(productObject);
@@ -18,6 +19,7 @@ function Product() {
         setCurrentId('');
     }
 
+    //Obtener toda la colecion de datos de la base de datos
     const getProducts = async () =>{
         db.collection('Products').onSnapshot(
             (querySnapshot) => {
@@ -29,6 +31,7 @@ function Product() {
             });
     };
 
+    //Metodo para eliminar un producto
     const DeleteProduct = async (id) =>{
         if(window.confirm('¿Estás seguro de eliminar el producto?')){
             await db.collection('Products').doc(id).delete();

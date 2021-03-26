@@ -7,6 +7,7 @@ import 'firebase/database';
 import 'firebase/auth';
 import 'firebase/firestore'
 
+//Configuración de firebase
 const firebaseConfig = {
   apiKey: "AIzaSyC_cTCvqWBcRup4ccDxRdzkJLfxZvtJPdY",
   authDomain: "crud-productos-98a8c.firebaseapp.com",
