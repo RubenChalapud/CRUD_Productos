@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../../App';
 
 
 function ProductForm(props) {
@@ -22,6 +23,19 @@ function ProductForm(props) {
         props.Task(values);
         setValues({...initialStateValues})
     }
+
+    const getProductById = async (id) =>{
+        const doc = await db.collection('Products').doc(id).get();
+        setValues({...doc.data()})
+    }
+
+    useEffect(() => {
+        if(props.currentId == ''){
+            setValues({...initialStateValues});
+        } else {
+            getProductById(props.currentId);
+        }
+    }, [props.currentId]);
 
     return (
         <form className="card card-body" onSubmit={handleSubmit}>
@@ -47,7 +61,7 @@ function ProductForm(props) {
             </div>
 
             <button className="btn btn-primary btn-block">
-                Guardar
+                {props.currentId === '' ? 'Guardar': 'Actualizar'}
             </button>
         </form>
     );

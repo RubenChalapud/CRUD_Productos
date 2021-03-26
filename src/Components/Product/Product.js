@@ -7,9 +7,15 @@ function Product() {
 
     const [products, setProducts] = useState([]);
 
+    const [currentId, setCurrentId] = useState('');
+
     const Task = async (productObject) =>{
-        await db.collection('Products').doc().set(productObject);
-        console.log('New task added')
+        if (currentId === ''){
+            await db.collection('Products').doc().set(productObject);
+        } else {
+            await db.collection('Products').doc(currentId).update(productObject);
+        }
+        setCurrentId('');
     }
 
     const getProducts = async () =>{
@@ -29,17 +35,13 @@ function Product() {
         }
     };
 
-    const EditProduct = id =>{
-
-    };
-
     useEffect(()=>{
         getProducts();
     }, []);
 
     return (
         <div>
-            <ProductForm Task={Task}></ProductForm>
+            <ProductForm {...{Task, currentId, products}}></ProductForm>
             <h1>Product</h1>
             <div className="col-md-16 p-2">
                 {products.map(product => (
@@ -49,7 +51,7 @@ function Product() {
                             <h4>{product.name}</h4>
                             <div>
                             <i className="material-icons" 
-                            onClick={() => EditProduct(product.id)}>mode_edit</i>
+                            onClick={() => setCurrentId(product.id)}>mode_edit</i>
                             <i className="material-icons text-danger" 
                             onClick={() => DeleteProduct(product.id)}>delete</i>
                             </div>
