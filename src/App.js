@@ -4,7 +4,8 @@ import Routes from './Routes';
 
 import firebase from 'firebase/app';
 import 'firebase/database';
-import 'firebase/auth'
+import 'firebase/auth';
+import 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: "AIzaSyC_cTCvqWBcRup4ccDxRdzkJLfxZvtJPdY",
@@ -16,7 +17,11 @@ const firebaseConfig = {
   measurementId: "G-RJ4BTM8RHT"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const fb = firebase.initializeApp(firebaseConfig);
+
+// Conexion con firestore
+export const db = fb.firestore();
+
 
 function App() {
   return (
