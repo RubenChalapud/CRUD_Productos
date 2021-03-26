@@ -10,6 +10,7 @@ import 'firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyC_cTCvqWBcRup4ccDxRdzkJLfxZvtJPdY",
   authDomain: "crud-productos-98a8c.firebaseapp.com",
+  databaseURL: "https://crud-productos-98a8c-default-rtdb.firebaseio.com",
   projectId: "crud-productos-98a8c",
   storageBucket: "crud-productos-98a8c.appspot.com",
   messagingSenderId: "877082553585",

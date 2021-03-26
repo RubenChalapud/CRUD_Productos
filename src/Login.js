@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
   const loginGoogle = (e) => {
     e.preventDefault();
 
-    let provider =  new firebase.auth.GoogleAuthProvider();
+    var provider =  new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
     .then(response => {
       props.history.push('/products');
@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
 const loginFacebook = (e) => {
   e.preventDefault();
 
-  let provider =  new firebase.auth.FacebookAuthProvider();
+  var provider =  new firebase.auth.FacebookAuthProvider();
   firebase.auth().signInWithPopup(provider)
   .then(response => {
     props.history.push('/products');
